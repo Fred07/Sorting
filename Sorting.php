@@ -27,7 +27,7 @@ class Sorting {
             for( $j = 0; $j < sizeof($arr)-1 ; $j++ ) {
 
                 if ( $arr[$j] > $arr[$j+1] ) {
-                    Sorting::swap($arr, $j, $j+1);
+                    self::swap($arr, $j, $j+1);
                     $flag = true;
                 }
             }
@@ -43,21 +43,21 @@ class Sorting {
 
         // 父結點 最多到 陣列長度的一半
         for( $i = floor(count($arr)/2)-1;$i >= 0;$i-- ) {
-            Sorting::heapify($arr, $i, count($arr));
+            self::heapify($arr, $i, count($arr));
         }
 
         // Sort
         // 從最後一個結點開始做對調排序
         for( $i = count($arr) - 1;$i > 0;$i-- ) {
-            Sorting::swap($arr, 0, $i);
-            Sorting::heapify($arr, 0, $i);
+            self::swap($arr, 0, $i);
+            self::heapify($arr, 0, $i);
         }
 
         return $arr;
     }
     public static function heapify( &$arr, $rootIndex, $length ) {
 
-        //Sorting::outputBinaryTree($arr);      // 可取得二元樹調整過程
+        //self::outputBinaryTree($arr);      // 可取得二元樹調整過程
 
         $leftIndex = $rootIndex * 2 + 1;
         $rightIndex = $rootIndex * 2 + 2;
@@ -76,8 +76,8 @@ class Sorting {
         // 做swap & heapify
         // 最大值不是 root 才有需要 swap and heapify
         if ( $maxIndex != $rootIndex ) {
-            Sorting::swap($arr, $maxIndex, $rootIndex);
-            Sorting::heapify($arr, $maxIndex, $length);
+            self::swap($arr, $maxIndex, $rootIndex);
+            self::heapify($arr, $maxIndex, $length);
         }
     }
 
@@ -111,7 +111,7 @@ class Sorting {
             $i++;
         }
 
-        return Sorting::merge(Sorting::mergeSort($left), Sorting::mergeSort($right));
+        return self::merge(self::mergeSort($left), self::mergeSort($right));
     }
     // 負責合併, 且排序
     private static function merge($left, $right) {
